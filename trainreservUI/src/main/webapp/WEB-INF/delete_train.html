@@ -1,0 +1,103 @@
+
+<!doctype html>
+
+<html>
+<title>Delete a Train</title>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <style>
+        body {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+    </style>
+</head>
+<body align="center">
+<br>
+<input type="number" list="browsers" name="browser" placeholder="Select Train Number" style="width:300px; height:30px; color:deeppink; font-weight:bold; background-color:lightblue"/>
+<datalist id="browsers" name="dr">
+    <option value="1001" id="1001">1001  -  Shatabdi Express,  Bangalore,  Delhi
+    <option value="1002" id="1002">1002  -  Udyan Express,  Bangalore,  Mumbai
+    <option value="1003" id="1003">1003  -  Bangalore Express,  Delhi,  Bangalore
+    <option value="1004" id="1004">1004  -  Brindavan Express,  Bangalore,  Chennai
+    <option value="1005" id="1005">1005  -  Ratnagiri Passenger,  Dadar,  Ratnagiri
+    <option value="1006" id="1006">1006  -  Bangalore Express,  Talguppa,  Bangalore
+    <option value="1007" id="1007">1007  -  Jan Shatabdi Express,  Kannur,  Trivandrum
+    <option value="1008" id="1008">1008  -  Chennai Express,  Mangalore,  Chennai
+    <option value="1009" id="1009">1009  -  Mysore Passenger,  Bangalore,  Mysore
+    <option value="1010" id="1010">1010  -  Dwarka Express,  Guwahati,  Okha
+
+</datalist>
+    <button onclick="fireSweetAlert()" style="width:100px; height:37px; color:red; background-color:palegreen; font-weight:bold;">Delete</button>
+<button onclick="res()" style="width:100px; height:37px; color:#0027c4; background-color:#e8eb34; font-weight:bold;">Reset</button>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+ function fireSweetAlert() {
+        var a = document.getElementsByName('browser')[0].value;
+        if(a==""){
+        Swal.fire({
+            position: 'top-end',
+            icon: 'warning',
+            title: 'Please select a Train Number',
+            showConfirmButton: false,
+            timer: 2500
+        })
+        }
+        else if(a=="1001" || a=="1002" || a=="1003" || a=="1004" || a=="1005" || a=="1006" || a=="1007" || a=="1008" || a=="1009" || a=="1010"){
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                document.getElementById(a).disabled=true;
+
+                Swal.fire(
+                    'Deleted!',
+                    'Train  <mark>'+a+'</mark>  has been deleted.',
+                    'success'
+                )
+            }
+        })
+        }
+        else {
+        //document.getElementsByName('browser')[0].value="";
+        Swal.fire({
+            icon: 'error',
+            title: 'Train Not Found!',
+            text: 'Please select a valid one...'
+        })
+        }
+}
+
+
+
+function res(){
+document.getElementsByName('browser')[0].value="";
+}
+</script>
+<pre><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<a href="adminoperations.html"><button style="margin-left:900px;">Back</button></a>
+</pre>
+</body>
+</html>

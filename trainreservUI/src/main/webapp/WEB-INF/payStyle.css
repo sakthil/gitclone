@@ -1,0 +1,156 @@
+body{
+    font-family: sans-serif;
+    background-color: #e6d5a4;
+}
+.app-container{
+height: 700px;
+width: 400px;
+background-image: linear-gradient(#580e8f, #9200ff);
+top: 48%;
+left: 51%;
+transform: translate(-50%, -50%);
+position: absolute;
+box-shadow: 3px 3px 6px 6px #969286;
+}
+
+.top-box{
+height: 150px;
+background-color: #9100fb;
+border-bottom-left-radius: 80px;
+border-bottom-right-radius: 80px;
+}
+
+.payment-option-upi a{
+   text-decoration: none;
+       font-height: 20px;
+       color: #ADD8E6;
+}
+
+.payment-option-card a{
+   text-decoration: none;
+       font-height: 20px;
+       color: #ADD8E6;
+}
+
+.top-box p{
+text-align: center;
+padding-top: 50px;
+color: #fff;
+}
+
+.left-icon{
+float: left;
+margin-left: 30px;
+}
+
+.right-icon{
+float: right;
+margin-left: 30px;
+}
+
+.middle-box{
+height: 150px;
+background-image: linear-gradient(#580e8f, #9200ff);
+margin: -70px 30px 20px;
+color: #fff;
+text-align: center;
+font-size: 12px;
+border-radius: 10px;
+}
+
+.middle-box h1{
+padding-top: 30px;
+padding-bottom: 30px;
+font-size: 50px;
+font-weight: normal;
+}
+
+.middle-box h1 span{
+font-size: 50px;
+margin-left: 5px;
+bottom: 0px;
+position: relative;
+}
+
+.payment-option-upi{
+color: #fff;
+margin: 5px 30px;
+height: 30px;
+width: 290px;
+background-color: #9100fd;
+border: none;
+cursor: pointer;
+}
+
+.payment-option-card{
+color: #fff;
+margin: 5px 30px;
+height: 30px;
+width: 290px;
+background-color: #9100fd;
+border: none;
+cursor: pointer;
+}
+
+.card-details{
+    background: #fff;
+    color: #555;
+    margin: 10px 30px;
+    padding: 10px;
+}
+
+.card-details p{
+font-size: 14px;
+}
+.card-details label{
+font-size: 10px;
+line-height: 20px;
+}
+
+.card-group{
+margin-top: 10px;
+}
+
+.date-group{
+margin-top: 10px;
+display: inline-block;
+}
+
+.cvc-group{
+margin-top: 10px;
+display: inline-block;
+float: right;
+}
+
+.name-group{
+margin-top: 10px;
+}
+
+.card-field, .name-field{
+width: 270px;
+}
+.date-field, .cvc-field{
+width: 80px;
+}
+
+.card-details input{
+border: 1px solid #ccc;
+height: 22px;
+padding: 5px;
+font-size: 10px
+}
+
+.card-details input::placeholder{
+color: #ccc;
+}
+
+.pay-but{
+width: 270px;
+color: #fff;
+margin-top: 20px;
+height: 30px;
+width: 290px;
+background-color: #9100fd;
+border: none;
+cursor: pointer;
+}

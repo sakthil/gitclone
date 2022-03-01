@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link rel="shortcut icon" href="/assests/favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|Poppins">
+    <style>
+    h1{
+        text-align: center;
+        font-style: overpass Black;
+        font-family: Poppins, sans-serif;
+        color: white;
+
+    }
+        body{
+            margin: 0;
+            padding: 0;
+            background: url(welcomeimg.png) no-repeat center fixed;
+            background-size: cover;
+        }
+        .design-table{
+
+            border-collapse: collapse;
+            margin-left: auto;
+            margin-right: 10%;
+            margin-down: 30%;
+            font-size: 1.2em;
+            min-width: 400px;
+            border-radius: 5px 5px 0 0;
+            box-shadow: 0 0 20px rgba(0,0,0,0.15);
+        }
+        .design-table thead tr{
+            background-color: #009879;
+            color: #000;
+            text-align: left;
+            font-weight: bold;
+        }
+        .design-table th, td{
+            padding: 12px 15px;
+        }
+        .design-table tbody tr{
+            border-bottom: 1px solid #dddddd;
+        }
+        .design-table tbody tr{
+            background-color: #dcecd7;
+        }
+        .content-table tbody tr:last-of-type{
+            border-bottom: 2px solid #009879;
+        }
+        .content-table tbody tr.active row{
+            font-weight: bold;
+            color: #009879;
+        }
+        button{
+            border: none;
+        outline: none;
+        height: 40px;
+        background: #ff2525;
+        color: #fff;
+        font-size: 18px;
+        border-radius: 20px;
+        letter-spacing: 1px;
+        margin-left: 830px;
+        }
+
+    button:hover{
+    cursor: pointer;
+    background: #36A75F;
+    color: #000;
+}
+
+        a{
+    text-decoration: none;
+    font-size: 18px;
+    font-height: 24px;
+    color: #ADD8E6;
+}
+.pic{
+    width:30px;
+    height:30px;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    right: 5px
+}
+
+    </style>
+</head>
+<body>
+<a href="login.html" class="login"><img src="logout.png" class="pic"></a>
+<h1>Trains Available for booking</h1>
+<table class="design-table">
+    <thead>
+    <tr>
+        <th>Train no.</th>
+        <th>Train name</th>
+        <th>Source</th>
+        <th>Destination</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>1001</td>
+        <td>Shatabdi Express</td>
+        <td>Bangalore</td>
+        <td>Delhi</td>
+        <td>2500</td>
+    </tr>
+    <tr>
+        <td>1002</td>
+        <td>Shatabdi Express</td>
+        <td>Delhi</td>
+        <td>Bangalore</td>
+        <td>2500</td>
+    </tr>
+    <tr>
+        <td>1003</td>
+        <td>Udyan Express</td>
+        <td>Bangalore</td>
+        <td>Mumbai</td>
+        <td>1500</td>
+    </tr>
+    <tr>
+        <td>1004</td>
+        <td>Udyan Express</td>
+        <td>Mumbai</td>
+        <td>Bangalore</td>
+        <td>1500</td>
+    </tr>
+    <tr>
+        <td>1005</td>
+        <td>Brindavan Express</td>
+        <td>Bangalore</td>
+        <td>chennai</td>
+        <td>1000</td>
+    </tr>
+    <tr>
+        <td>1006</td>
+        <td>Brindavan Express</td>
+        <td>Chennai</td>
+        <td>Bangalore</td>
+        <td>1500</td>
+    </tr>
+    </tbody>
+</table>
+<button  type="submit"><a href="index.html">Book</a></button>
+</body>
+</html>

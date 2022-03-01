@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<center>
+    <head>
+        <link rel="icon" href="src/main/webapp/train.png" >
+        <style>
+#atr
+{
+font-size:3em;
+align:center;
+letter-spacing:2px;
+width:50%;
+color:#0e3742;
+text-transform: uppercase;
+animation: animate 4s linear infinite;
+}
+
+
+
+
+@keyframes animate
+{
+0%,18%,20%,50.1%,60%,65.1%,80%,90.1%,92%
+{
+color:#0e3742;
+text-shadow:none;
+
+
+
+}
+18.1%,20.1%,30%,50%,60.1%,65%,80.1%,90%,95.1%,100%
+{
+color: #fff;
+text-shadow: 0 0 10px blue,
+0 0 10px blue,
+0 0 20px blue,
+0 0 40px blue,
+0 0 40px blue;
+
+
+
+}
+}
+Body {
+font-family: Calibri, Helvetica, sans-serif;
+background-color: black;
+}
+button {
+background-color:green;
+width: 15%;
+color: orange;
+padding: 15px;
+margin: 10px 0px;
+border: none;
+cursor: pointer;
+}
+form {
+border: 30px groove red;
+background-color: #307398;
+width: 45%;
+}
+label{
+color:plum;
+}
+div{
+color:cadetblue;
+}
+a{
+color:gold;
+}
+input[type=text] {
+width: 20%;
+margin: 8px 0;
+padding: 12px 20px;
+display: inline-block;
+border: 2px solid green;
+box-sizing: border-box;
+}
+input[type=number] {
+width: 15%;
+margin: 8px 0;
+padding: 12px 20px;
+display: inline-block;
+border: 2px solid green;
+box-sizing: border-box;
+}
+button:hover {
+opacity: 0.7;
+}
+.container {
+padding: 10px;
+background-color: lightblue;
+}
+
+
+
+</style>
+        <meta charset="UTF-8">
+        <title>Train Ticket Reservation</title>
+
+    </head>
+    <body>
+    <h1 id="atr">Train Reservation Portal</h1>
+    <form action="payment.html" method="post">
+        <br>
+        <label>Enter the Train Number:</label>
+        <select id="idName" name="Choice" required>
+            <option >Select your Choice</option>
+            <option value="1001">1001</option>
+            <option value="1002">1002</option>
+            <option value="1003">1003</option>
+            <option value="1004">1004</option>
+            <option value="1005">1005</option>
+            <option value="1006">1006</option>
+        </select>
+        <br>
+        <br>
+        <label>Enter the date of Travel:</label>
+        <input type="date" name="doj" id="doj" required>
+        <br>
+        <br>
+        <label>Number of members: </label><input type="number" id="member" name="member"><label> (max. 6)</label><br>
+        <a href="#" id="filldetails" onclick="addFields()">Fill Details</a>
+        <div id="container" />
+        <br>
+        <br>
+    </form>
+    <script type='text/javascript' >
+function addFields(){
+// Number of inputs to create
+var number = document.getElementById("member").value;
+// Container <div> where dynamic content will be placed
+var container = document.getElementById("container");
+// Clear previous contents of the container
+while (container.hasChildNodes()) {
+container.removeChild(container.lastChild);
+}
+if((number<7)&&(number>0)){
+for (i=0;i<number;i++){
+// Append a node with a random text
+container.appendChild(document.createTextNode("Passenger " + (i+1)));
+container.appendChild(document.createElement("br"));
+// Create an <input> element, set its type and name attributes
+container.appendChild(document.createTextNode("name"));
+var input = document.createElement("input");
+input.type = "text";
+input.name = "Name" + i;
+input.required=true;
+container.appendChild(input);
+
+container.appendChild(document.createTextNode("age"));
+var input1 = document.createElement("input");
+input1.type = "text";
+
+input1.name = "age" + i;
+input1.required=true;
+container.appendChild(input1);
+
+container.appendChild(document.createTextNode("Gender: "));
+container.appendChild(document.createTextNode("male"));
+var input2 = document.createElement("input");
+input2.required=true;
+input2.type = "radio";
+input2.name = "gender" + i;
+input2.value = "gender";
+container.appendChild(input2);
+
+container.appendChild(document.createTextNode("female"));
+var input2 = document.createElement("input");
+input2.required=true;
+input2.type = "radio";
+input2.name = "gender" + i;
+input2.value = "gender";
+container.appendChild(input2);
+
+
+// Append a line break
+container.appendChild(document.createElement("br"));
+}
+let btn = document.createElement("button");
+btn.type="submit";
+btn.innerHTML = "SUBMIT";
+
+<!--btn.onclick = function () {-->
+<!--alert("Confirmed ");-->
+<!--window.location.replace("Done.html");-->
+<!--};-->
+container.appendChild(btn);
+}
+else{
+alert("Number of members allowed is only 6 ");
+}
+}
+  var today = new Date();
+    var dd = today.getDate()+1;
+var mm = today.getMonth() + 1; //January is 0!
+var yyyy = today.getFullYear();
+
+if (dd < 10) {
+   dd = '0' + dd;
+}
+
+if (mm < 10) {
+   mm = '0' + mm;
+}
+
+today = yyyy + '-' + mm + '-' + dd;
+document.getElementById("doj").setAttribute("min", today);
+
+</script>
+
+    </body>
+
+</center>
+</html>

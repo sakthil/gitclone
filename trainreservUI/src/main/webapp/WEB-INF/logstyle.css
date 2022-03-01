@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+body{
+margin: 0;
+padding: 0;
+background: url(train_track.png) no-repeat center fixed;
+background-size: cover;
+}
+
+.loginbox{
+    width: 360px;
+    height: 420px;
+    background: #187DC9;
+    opacity: 0.83;
+    color: #fff;
+    top: 50%;
+    left: 53%;
+    position: absolute;
+    transform: translate(-50%, -40%);
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 70px 30px;
+    box-shadow: 3px 3px 6px 6px #FCB973;
+    background-color: #ffffff10;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.pic{
+    width:60px;
+    height:60px;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    right: 5px
+}
+
+.train{
+    width:100px;
+    height:100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+}
+.social-container {
+	margin: 3px 95px;
+}
+
+.fa{
+color:#1a0000
+}
+
+.social-container a {
+	border: 1px solid #dddddd;
+	border-radius: 50%;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 5px;
+	height: 40px;
+	width: 40px;
+}
+
+h2{
+    margin: 0;
+    padding: 0 0 5px;
+    text-align: center;
+    font-size: 25px;
+    color: #62aadc;
+    font-style: Overpass Black;
+    font-family: Poppins, sans-serif;
+}
+.loginbox p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: #000
+}
+.loginbox input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.loginbox input[type="email"], input[type="password"]
+{
+    border: none;
+    border-bottom: 1px solid black;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: solid black;
+    font-size: 16px;
+}
+
+.loginbox input[type="submit"]{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #ff2525;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+
+}
+
+.loginbox input[type="submit"]:hover{
+    cursor: pointer;
+    background: #ffc107;
+    color: #000;
+}
+
+.loginbox a{
+    text-decoration: none;
+    font-size: 14px;
+    font-height: 20px;
+    color: #ADD8E6;
+
+}
+.forgot{
+    position: absolute;
+    bottom: 20px;
+    right: 25px;
+}
+
+.loginbox a:hover{
+    cursor: pointer;
+    color: #ffc107;
+}
+
+::placeholder {
+    color: #faf9f6;
+    opacity: 0.5;
+}

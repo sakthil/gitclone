@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment options</title>
+    <link rel="stylesheet" href="payStyle.css">
+</head>
+<body>
+<form action="Done.html">
+<div class="app-container">
+    <div class="top-box">
+    <p><span class="left-icon"></span>CHECKOUT<span class="right-icon">
+        </span></p>
+    </div>
+    <div class="middle-box">
+        <h1>Rs.<span> </span></h1>
+        <p>pay to IRCTC</p>
+    </div>
+
+    <div class="button-box">
+        <button type="button" class="payment-option-upi">
+            <a href="UpiPayment.html">pay with upi</a></button>
+        <button type="button" class="payment-option-card">
+            <a href="Netbanking.html">pay with Net banking</a></button>
+        <div class="card-details">
+            <p>pay using credit or debit card</p>
+            <div class="card-group">
+                <label>Card Number</label>
+                <input type="text" class="card-field" placeholder="xxxx-xxxx-xxxx-xxxx" required>
+            </div>
+
+            <div class="date-group">
+                <label>Expiry date</label>
+                <input type="text" class="date-field" placeholder="mm" required>
+                <input type="text" class="date-field" placeholder="yyyy" required>
+            </div>
+            <div class="cvc-group">
+                <label>CVV</label>
+                <input type="password" class="cvc-field" placeholder="xxx" required>
+            </div>
+            <div class="name-group">
+                <label>Card holder name</label>
+                <input type="text" class="name-field" placeholder="full name" required>
+            </div>
+            <button type="submit" class="pay-but" onclick="return confirm('Confirm Payment')">Pay</button>
+        </div>
+    </div>
+</div>
+</form>
+</body>
+</html>
