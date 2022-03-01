@@ -1,0 +1,67 @@
+[{
+		"car_manufacturer": "Koenigsegg",
+		"Price": "$4.8 million",
+		"img_id": "img1",
+		"spare_parts": ["lamp", "tyres", "jack"],
+		"available": true,
+		"features": {
+			"top_speed": "412kmph",
+			"0-100": "2.9secs",
+			"todate": 2017
+		}
+	},
+	{
+		"car_manufacturer": " Lamborghini",
+		"Price": "$4.8 million",
+		"img_id": "img2",
+		"features": {
+			"top_speed": "350kmph",
+			"0-100": "3.3secs",
+			"todate": 2017
+		}
+	},
+	{
+		"car_manufacturer": "Bugatti Veyron",
+		"Price": "$3.4 million",
+		"img_id": "img1",
+		"spare_parts": ["lamp", "tyres", "jack"],
+		"available": true,
+		"features": {
+			"top_speed": "450kmph",
+			"0-100": "2.9secs",
+			"todate": 2017
+		}
+	},
+	{
+		"car_manufacturer": "Ferrari Pininfarina Sergio",
+		"Price": "$3.0 million",
+		"img_id": "img2",
+		"features": {
+			"top_speed": "335kmph",
+			"0-100": "3.3secs",
+			"todate": 2017
+		}
+	},
+	{
+		"car_manufacturer": "Pagani Huayra BC",
+		"Price": "$2.6 million",
+		"img_id": "img1",
+		"spare_parts": ["lamp", "tyres", "jack"],
+		"available": true,
+		"features": {
+			"top_speed": "412kmph",
+			"0-100": "2.9secs",
+			"todate": 2017
+		}
+	},
+	{
+		"car_manufacturer": " Mercedes-Benz Maybach Exelero",
+		"Price": "$8 million",
+		"img_id": "img2",
+		"features": {
+			"top_speed": "475kmph",
+			"0-100": "3.3secs",
+			"todate": 2017
+		}
+	}
+]

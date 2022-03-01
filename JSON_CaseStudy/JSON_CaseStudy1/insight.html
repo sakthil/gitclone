@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    
+<head>
+    <title>CarzSpotz</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"> 
+    <style>
+         body
+        {
+            background: url("bg.jpg") no-repeat fixed;
+            background-size: cover;
+        }
+        table#tableMain {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+}
+table#tableMain{display: none}
+
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 10px;
+}
+th{background:#3f51b5; color:white;text-align: center}
+tr {
+    background-color: white;
+}
+
+.button {
+    background-color:black; /* Green */
+    border: none;
+    color: white;
+    padding: 10px;
+    
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-top: 10px;
+    cursor: pointer;
+	opacity:0.9;
+        border-radius: 10px;
+}
+.button:hover{background-color:#3f51b5}
+        
+    </style>
+    <script type="text/javascript" src="js/cars.js"></script>
+    <script type="text/javascript">
+        window.onload=function()
+        {
+            if(localStorage.name==="" || localStorage.name===undefined)
+            {
+                document.getElementById("logout").style.display = "none";
+                document.getElementById("greetUser").style.display="none";
+            }
+            document.getElementById("greetUser").innerHTML="Hi "+ localStorage.name; 
+        }
+        
+        
+        
+        function getSellItems()
+	{
+                
+		var XHR;
+		
+	
+		
+			
+		
+		if (window.ActiveXObject) {
+			//For Microsoft Browsers
+			XHR=new ActiveXObject("Microsoft.XMLHTTP");		
+		}
+		else if (window.XMLHttpRequest){
+			//For Mozilla and Non Microsoft Browsers
+			XHR=new XMLHttpRequest();	
+		}
+		
+
+		XHR.open("GET", "cardetails.json" ,true);	
+		//XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		
+		XHR.onreadystatechange = function(){displayMessage(XHR);};
+	
+		//XHR.send("adminName="+str);
+		XHR.send();
+		
+	
+	}
+	
+
+	
+	function displayMessage(XHR)
+	{
+            
+             document.getElementById("tableMain").style.display="table";
+		if(XHR.readyState==4)
+		{		
+			if(XHR.status==200)
+			{	
+				
+				
+				var d=JSON.parse(XHR.responseText);
+				 console.log("data fetched"+d[0].product_name);
+                
+	
+				 for(i=0;i<6;i++){
+					 
+					 document.getElementById("result"+i).innerHTML="<td>"+d[i].car_manufacturer+"</td>"+"<td>"+d[i].Price+"</td>"+"<td>"+d[i].features.top_speed+"</td>"+"<td id='pq"+i+"' >"+d[i].features.todate+"</td>";
+                                         
+	                 
+            
+			}
+			}
+			else
+			{
+				document.getElementId("error").innerHTML=XHR.statusText;
+				document.getElementById("error").style.display="block";
+			}
+			
+		
+	}
+	}
+
+    </script>
+</head>
+<body id="b1" align="center" onload="getSellItems()">
+    <section id="header">
+        <img src="Cars.JPG"  alt="headerimage" style="">
+            
+        <nav> 
+            <ul>
+                <li><a href="Home.html" >Home</a></li>
+                <li><a href="purchase.html" >Online Store</a></li>
+                <li><a href="#insight" class="active" >Insight</a></li>
+                <li><a href="Login.html">Logout</a></li>
+            </ul>
+        </nav> 
+    </section> <br><br>
+<form action="" style="margin-top:40px;">
+        <center>
+        <div id="stockTable">
+          
+        <h4>In Stock - Cars</h4>
+           
+        </div>
+        </center>
+        <!--<input   type="button" class="button" value="In Stock - Cars">-->
+    </form> 
+<table id="tableMain" style="margin-top:30px" align="center">
+    <tr>
+            <th>Car Manufacturer</th>
+            <th>Price</th>
+            <th>Top Speed</th>
+            <th>Year Launched</th>
+            </tr>
+        
+        <tr id="result0">
+        </tr>
+        
+        <tr id="result1">
+            
+        </tr>
+        <tr id="result2">
+        </tr>
+        <tr id="result3">
+        </tr>
+        <tr id="result4">
+        </tr>
+        <tr id="result5">
+        </tr>
+
+    </table>    
+
+     <footer>
+        <span>Copyright &copy; 2016</span>
+    </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+{
+	"cars": {
+		"Hyundai": {
+			"Sentra": {
+				"img_url": "car1.png",
+				"heading": "Hyundai LX-20",
+				"description": "It has nice style,nice safety features, powerful engine."
+			}
+		},
+		"Ford": {
+			"Taurus": {
+				"img_url": "car2.png",
+				"heading": "Ford Ki-75",
+				"description": "The Ford kiantra gives good mileage and suitable for long drive in highways."
+			}
+		},
+		"Mercedes": {
+			"Taurus": {
+				"img_url": "car3.png",
+				"heading": "Mercedes z-95",
+				"description": "The Mercedes is most sold out car in 2017 and it gives people good driving experience."
+			}
+		}
+
+	}
+}

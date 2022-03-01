@@ -1,0 +1,16 @@
+[{
+	"model_name": "Audi-R8",
+	"img_url": "car1.png",
+	"description": "The Aston Martin On Ice programme has been a hugely popular event for many years, offering customers and guests the opportunity to acquire a range of winter driving skills through lessons with professional drivers, and leave with an enriched understanding of the Aston Martin range."
+},
+{
+	"model_name": "Aston Martin one-77",
+	"img_url": "car2.png",
+	"description": "The Aston Martin On Ice programme has been a hugely popular event for many years, offering customers and guests the opportunity to acquire a range of winter driving skills through lessons with professional drivers, and leave with an enriched understanding of the Aston Martin range."
+},
+{
+	"model_name": "Aston Martin",
+	"img_url": "car3.png",
+	"description": "The Aston Martin On Ice programme has been a hugely popular event for many years, offering customers and guests the opportunity to acquire a range of winter driving skills through lessons with professional drivers, and leave with an enriched understanding of the Aston Martin range."
+}
+]
