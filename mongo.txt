@@ -1,0 +1,294 @@
+Syntax:
+     use databaseName
+db.createCollection('product_catalog')
+
+ db.collection_name.drop()
+
+db.product_catalog.drop()
+
+This command always drops the database currently in use.
+db.dropDatabase()
+
+Syntax:     
+     db.collection_name.insert({document})
+
+Syntax:     
+     db.collection_name.insert({document})
+
+[09:26 am] Chintan (Guest)
+Syntax:
+
+db.collection_name.insert(
+
+[
+
+{​​​​​document1}​​​​​,
+
+{​​​​​document2}​​​​​
+
+]
+
+)
+
+
+Syntax:
+For insertOne()
+     db.collection_name.insertOne( { <document> } )
+OR
+For insertMany()
+     db.collection_name.insertMany( [ { <document1> }, { <document2> } ] )
+
+Syntax:
+     db.collection_name.find()
+
+Syntax:
+     db.collection_name.find( {query}, {projection} )
+
+rojection
+The second parameter, or the second document is for the projection. This parameter specifies which fields are to be returned in the documents that match the query selection criteria. 
+
+The projection parameter document is usually written as 
+
+ 
+{ field1: <value>, field2: <value> ... }
+
+
+
+
+{ field1: <value>, field2: <value> ... }
+
+db.product_catalog.find()
+
+db.product_catalog.find({​​​​}​​​​)
+
+
+db.product_catalog.find({​​​​}​​​​,{​​​​}​​​​)
+
+
+db.product_catalog.find({​​​​}​​​​,{​​​​_id:0}​​​​)
+
+Syntax:
+     db.collection_name.find(
+       { $and: [
+       { attribute1 : "value1" },
+       { attribute2 : "value2" }
+     ]})
+
+Syntax:
+     db.collection_name.find(
+          { attribute1 : {$ne: "value1" } } )
+
+
+Syntax:
+     { field_name: { $all: [ "value1", "value2" ] }
+
+[03:00 pm] Chintan (Guest)
+Syntax:
+
+     db.collection_name.update(
+
+       {​​​​​ attribute1 : "value1" }​​​​​,     
+
+       {​​​​​ $set : {​​​​​ attribute : "newValue" }​​​​​ }​​​​​ )
+                  
+db.product_catalog.aggregate( [
+    { $project: { _id: 0, manufacturer: 1, price: 1 } },
+    { $group: { _id: "$manufacturer", totalPrice: { $sum: "$price" } } }
+] )
+
+
+Syntax:
+     db.collection_name.aggregate(
+    { $match: { key1 : "value1"} } )
+
+Syntax:
+     db.collection_name.aggregate(
+    { $match: {$and: [{ key1 : "value1"}, {key2 : "value2" } ] } } )
+
+Syntax:
+     For ascending indexes:
+     db.collection_name.createIndex( { field_name : 1 } )
+
+     For descending indexes:
+     db.collection_name.createIndex( { field_name : -1 } )
+
+Syntax:
+     db.collection_name.createIndex( {field1 : 1, field2: -1} )
+db.collection_name.getIndexes()
+
+Syntax:
+     If you know the name of the index
+     db.collection_name.dropIndex( "index_name" )
+OR
+     For ascending indexes:
+     db.collection_name.drop_Index( { field_name : 1 } )
+OR
+     For descending indexes:
+     db.collection_name.drop_Index( { field_name : -1 } )  
+
+Syntax:
+     db.collection_name.dropIndexes()
+
+db.product_catalog.createIndex(
+        { price:-1 })
+
+                db.product_catalog.updateMany(
+      { "price" : { $gt : 80000 }, "manufacturer" : "apple" },
+      { $set: { "prodname" : "iphone 7 plus" } },
+      { upsert: true }
+
+
+Syntax:
+     db.collection_name.update( { $inc: { numericField: <number> } } )
+
+db.collection_name.update( { $push: { arrayField: "newValue" } } )
+
+
+
+Syntax:
+     db.collection_name.deleteOne( { <<remove criteria>> } 
+
+
+
+db.product_catalog.deleteOne( { prodname: "Java for Dummies"} )
+Syntax:
+
+     db.collection_name.deleteMany( {​​​​​}​​​​​ )
+
+db.product_catalog.deleteMany(
+    { price: { $lt : 1000 } } )
+
+
+for (var i = 1; i <= 50; i++) {
+   db.js_tryout.insert( { _id : i } )
+}
+
+
+
+
+var data = db.js_tryout.find({_id: {$gte: 5, $lte:15}}).toArray()
+for (var i=0; i < data.length; i++){
+print("The ID is "+ data[i]._id)
+}
+
+
+
+
+
+
+
+
+
+
+
+Syntax:
+     use databaseName
+db.createCollection('product_catalog')
+
+ db.collection_name.drop()
+
+db.product_catalog.drop()
+
+This command always drops the database currently in use.
+db.dropDatabase()
+
+Syntax:     
+     db.collection_name.insert({document})
+
+Syntax:     
+     db.collection_name.insert({document})
+
+[09:26 am] Chintan (Guest)
+Syntax:
+
+db.collection_name.insert(
+
+[
+
+{​​​​​document1}​​​​​,
+
+{​​​​​document2}​​​​​
+
+]
+
+)
+
+
+Syntax:
+For insertOne()
+     db.collection_name.insertOne( { <document> } )
+OR
+For insertMany()
+     db.collection_name.insertMany( [ { <document1> }, { <document2> } ] )
+
+Syntax:
+     db.collection_name.find()
+
+Syntax:
+     db.collection_name.find( {query}, {projection} )
+
+rojection
+The second parameter, or the second document is for the projection. This parameter specifies which fields are to be returned in the documents that match the query selection criteria. 
+
+The projection parameter document is usually written as 
+
+ 
+{ field1: <value>, field2: <value> ... }
+
+
+
+
+{ field1: <value>, field2: <value> ... }
+
+db.product_catalog.find()
+
+db.product_catalog.find({​​​​}​​​​)
+
+
+db.product_catalog.find({​​​​}​​​​,{​​​​}​​​​)
+
+
+db.product_catalog.find({​​​​}​​​​,{​​​​_id:0}​​​​)
+
+Syntax:
+     db.collection_name.find(
+       { $and: [
+       { attribute1 : "value1" },
+       { attribute2 : "value2" }
+     ]})
+
+Syntax:
+     db.collection_name.find(
+          { attribute1 : {$ne: "value1" } } )
+
+
+Syntax:
+     { field_name: { $all: [ "value1", "value2" ] }
+
+[03:00 pm] Chintan (Guest)
+Syntax:
+
+     db.collection_name.update(
+
+       {​​​​​ attribute1 : "value1" }​​​​​,     
+
+       {​​​​​ $set : {​​​​​ attribute : "newValue" }​​​​​ }​​​​​ )
+                  
+
+
+                db.product_catalog.updateMany(
+      { "price" : { $gt : 80000 }, "manufacturer" : "apple" },
+      { $set: { "prodname" : "iphone 7 plus" } },
+      { upsert: true }
+
+
+Syntax:
+     db.collection_name.update( { $inc: { numericField: <number> } } )
+
+db.collection_name.update( { $push: { arrayField: "newValue" } } )
+
+
+
+
+
+9845003308rR@
