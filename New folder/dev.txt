@@ -1,0 +1,505 @@
+ANSIBLE
+
+To install Ansible:
+$ sudo apt update
+$ sudo apt install software-properties-common
+$ sudo add-apt-repository --yes --update ppa:ansible/ansible
+$ sudo apt install ansible
+
+sudo apt-get install net-tools (for IP address command)
+sudo apt-get install nmap (to check port status)
+sudo apt install openssh-server (to install ssh server)
+
+COMMANDS
+DESCRIPTION
+ifconfig
+To get IP-address
+nmap 192.168.0.110 -p 22
+To check connectivity 
+sudo systemctl status ssh 
+To check status of ssh protocol
+sudo gedit etc/ansible/hosts
+To confirm installation of ansible (inventory file: hosts)
+ssh-keygen
+To generate public private key
+ssh copy-id username@ipaddr (or) ssh copy-id ipaddr
+To copy the generated key to node machine
+In node machine:
+cd home/ashwini/.ssh
+ls
+To verify key copied from master machine
+(authorized_keys)
+ansible all -m ping (before this add ipaddress of nodes in default inventory file -hosts)
+To verify master is connected to all node machines
+
+
+Ad-hoc commands: Syntax: 
+ansible host-pattern -m module [-a ‘module arguments’ -i inventory file]
+
+ansible prod -m copy -a ‘src=/etc/ansible/hosts dest=/tmp’
+Copies file hosts from master to node machine
+ansible -i myInventory.txt -m setup thbs_solutions
+It shows extra info in node machines listed in host group:thbs_solutions in myInventory.txt
+ansible thbs_solutions -m shell -a ‘df -h’ -i myInventory.txt
+It shows disk free space in human readable format
+ansible thbs_solutions -m apt -a ‘name=apache2 state=present’ -b
+To install apache2 in node machines
+ansible -m file -a ‘path=/tmp/ashwini.txt state=touch’
+To create file named ashwini.txt in node machines(state=absent removes file)
+ansible-playbook playbook_name -K
+To run playbook
+ansible-vault create playbook
+To encrypt new file 
+ansible-vault encrypt playbook
+To encrypt existing file
+ansible-vault decrypt playbook
+To decrypt existing file
+ansible-vault rekey playbook
+To change encrypted password
+Ansible-playbook --vault-id @prompt filename -K
+To run the encrypted playbook by asking vault password
+ansible-vault view playbook
+ this means that the contents are displayed in the terminal. Pass the vault encrypted file to the command: 
+ansible-galaxy init rolename
+To create roles file structure
+
+
+
+Playbook example:
+
+--- 
+- name: update packages and to install git and apache2, update sample webpage and restart service
+  hosts: all
+  become: yes
+  tasks:
+   - name: updating all packages to latest versions
+     apt:
+     name: '*'
+     state: latest
+
+   - name: installing git
+     apt:
+      name: git
+      state: present
+      update_cache: yes
+   - name: installing apache2
+     apt:
+      name: apache2
+      state: present
+   - name: copy index file
+     copy:
+      src: 'index.html'
+      dest: '/var/www/html/index.html'
+      force: yes
+   - name: restart
+      shell: ls -la
+      notify: restart service
+  
+
+  handlers:--------------------->exact level of tasks
+   - name: restart service
+     service:
+      name: apache2
+      state: restarted
+
+
+
+Ansible Roles: Primary mechanism to breakdown playbook into multiple files.
+
+Folders:
+defaults: main.yml file contains default values of roles (vars block to override default variables)
+files: static files referenced by roles
+handlers: main.yml contains roles handler def
+meta: main.yml contains info abt roles including author, license, platforms and optional roles dependencies
+tasks: main.yml contains roles task defaults
+template: contains jinja2 template engine
+
+STEPS:
+
+mkdir test-playbook           create directory
+
+------------------------------------------------------------------------------------------------------
+
+DOCKERS:
+
+Installation of docker commands:
+sudo apt-get update
+sudo apt-get install \ca-certificates \curl \gnupg \lsb-release 
+sudo apt install docker.io
+switch to root user to run docker commands: sudo -i
+
+Installation of docker-compose commands:
+apt-get update 
+apt get install docker-compose
+
+#commands to run if installation of docker-compose fails
+apt-get install curl
+apt-get install docker-compose
+             (or)
+apt-get install pip
+pip install docker-console
+
+List of used images:
+hello-world
+ubuntu
+mysql
+
+command
+usage
+docker pull image-name
+Pulls the container from the docker hub repository
+
+docker container start container-name/id
+To start the existing container
+Docker image rm image-name
+To remove the unused image
+docker container rm container-name/id
+To remove the container
+docker images (or) docker image ls
+Lists all images
+docker container prune
+Delete all stopped container
+docker rmi -f $(docker images -aq)
+Removes all unused images forcefully
+docker container ls (or) docker ps
+List all running container (container_id, image, command, created, status, ports name)
+docker container ls -a (or) docker ps -a
+List all container(stop/running)
+docker ls -l
+List latest container(only 1)
+docker ls -as
+List all the container with their sizes
+docker run image-name
+To create & run docker container(pulls images from repo if it is not present pull+create+start)
+docker run --name <ashu> image-name
+To create & run docker container by giving name to container
+docker run -it image-name bash
+To create and run container and enter into the container (it=interactive terminal)
+docker run -it -d image-name bash
+Creates and runs container in detached mode(in background)
+docker container exec -it container-name bash
+To start and enter into the existing container
+dpkg -l|wc -l
+To list word count(no. of packages)
+dpkg -l
+List all packages
+docker ps -aq
+List all containers id
+docker kill container-name/id
+Stops the container 
+docker pause container-name/id
+To pause container
+docker unpause container-name/id
+To unpause container
+docker container inspect container-name/id 
+To debug the container
+docker diff container-name/id
+
+Shows difference all packages inside it
+docker commit container-name/id(modified) ashwini-figlet
+To commit the changes done in running container and create custom image
+rm -rf directory_name
+To remove directory forcefully
+docker image inspect imagename/id
+To debug image /details of image
+docker-compose up -d
+To run all containers from docker-compose.yml in current directory in background
+docker-compose -f anotherfile.yml up -d
+If multiple yml files are present
+docker kill $(docker ps -q)
+To stop all running containers
+docker-compose down
+To stop and delete all running containers
+docker network ls
+To list all networks
+docker inspect container-name/id | grep IPAddress
+To get IP-address from inspect command 
+docker network create network-name
+To create new network
+docker run -it --name network_con --net thbs_solution nginx
+To run a container inside newly created network 
+var/lib/docker/volumes
+Default path of volumes
+docker volume create volume-name
+To create volumes
+docker volume ls
+To list volumes
+docker volume inspect volume-name
+To inspect volumes
+docker volume rm volume-name
+To delete volume
+docker run -it --name con1 -v volname:/direc-name nginx 
+To run a container by adding volume so all the files inside container direc-name will be stored in volname even if container is stopped/deleted
+docker container stats
+live data stream for running containers
+docker container rename container-id/name new-name
+Renames the container
+curl ipaddress: portnumber
+Shows output in terminal
+docker login
+To authenticate docker hub repository
+Docker build -t repo-name: image-name .
+Eg: docker build ashwinih2611/thbs:ansible-image .
+To push the created image into docker repository the image should be tagged with repository name
+
+docker push ashwinih2611/thbs:ansible_image .
+Pushes the image to repository
+
+
+-------------------------------------------------------------------------------------------------------
+
+GIT:
+
+GIT COMMANDS
+
+COMMANDS
+DESCRIPTION
+git config --global user.name “[name]”
+To set the name
+git config --global user.email “[email]”
+To set the email
+git init
+To create local git repository with .git
+git clone url
+To clone all the files from remote url to local
+git status
+Shows modified files in working directory
+git add filename
+To stage mentioned file
+git add .
+To stage all modified files
+git commit -m “message”
+To commit all staged files
+git branch
+List all branches
+git branch branch-name
+To create new branch
+git checkout branch-name
+To switch to the specified branch
+git checkout -b branch-name
+To create and switch to specified branch
+git log
+Shows all commits in current branch’s history
+git merge branch-name
+Merge specified branch’s history into current branch
+git diff
+Diff of what is changed but not staged
+git remote add origin url
+Set the remote repository
+git fetch
+Fetches all branches from git remote
+git merge origin/branch-name
+Merges remote specified branch into current branch
+git push
+Pushes local branch commits to remote repository
+git push origin/branch-name
+Pushes local branch commits to specified branch of remote repository
+git pull
+Fetch and merge commits from remote repository
+git stash save filename
+Saves modified and staged changes 
+git stash list
+List all stashed file changes
+git stash apply stash-name
+Apply all saved changes to current branch
+git stash drop
+Removes stash from top of stash stack
+git stash pop
+It applies stash to current branch and will be removed from stash list
+
+
+
+
+
+
+
+Git flow:
+
+git pull
+add/modify files
+git add .
+git commit -m “message”
+git push
+
+
+KUBERNETES:
+
+KUBERNETES
+
+It is container orchestration(management) tool. 
+
+
+Minikubes: 
+
+It provides the kubernetes cluster setup with one master and one worker with an abstraction layer for learning purpose. 
+
+Minimum requirement: 2CPU, 2GB RAM.
+
+Installation of minikubes:
+
+apt-get update 
+apt-get upgrade
+apt-get install docker.io
+
+https://webme.ie/how-to-run-minikube-on-a-virtualbox-vm/ 
+
+CMD [“/bin/bash”, “-c”,”while true; do echo hello-world; sleep 5;done;”]
+
+COMMANDS
+DESCRIPTION
+kubectl get nodes
+To get all nodes
+which kubectl
+Gives path of kubectl
+kubectl describe node node-name
+To get details of node
+kubectl create -f pod.yml
+To create manifest file(.yml file name)
+kubectl apply -f pod.yml
+To create and update manifest file
+kubectl get pods
+List of all pods
+kubectl describe pod pod-name
+             (or)
+kubectl describe pod/pod-name
+To get details of pod
+kubectl logs -f pod-name
+To get logs of pod
+minikube start
+To start minikube
+kubectl logs -f pod-name -c container-name
+To get logs of particular container in pod
+kubectl delete pod pod-name
+               (or)
+kubectl delete -f pod.yml
+To delete pod
+kubectl get pods -o wide pod-name
+To get more details of pod (IP address, node)
+
+kubectl exec -it pod-name -c container-name -- /bin/bash
+
+To get into the container from particular pod 
+kubectl run pod-name --image-name=nginx --port=8080 --restart=never
+Creating pod in externally(command-line)
+kubectl get pods --show-labels
+To see labels of all pods
+kubectl get pods -l company=thbs
+To get all pods with label=thbs (filtering)
+kubectl get pods -l company=thbs, class=devops
+To get all pods which holds all specified label values(AND operation)
+kubectl get pods -l ‘class in (devops, kubernetes)’
+Returns all pods with label class=devops (or) class=kubernetes
+kubectl get pods -l ‘class notin (devops, kubernetes)’
+Returns all pods with doesn't have label class=devops (or) class=kubernetes
+kubectl label nodes node-name company=thbs
+To give label to the node
+kubectl scale --replicas=5 rc -l company=thbs
+To scale-up/down the containers 
+
+
+
+
+
+
+
+
+
+
+Sample Manifest file: (with object as Pod)
+
+---
+kind: Pod
+apiVersion: v1
+metadata:
+ name: test-pod
+ labels:
+  env: development
+  name: test-pod
+  class: kubernetes
+  company: thbs
+ annotations:
+  description: This is a pod file with variable $(MYNAME)
+spec:
+ containers:
+  - name: con1
+     image: ubuntu
+     command: ["/bin/bash", "-c", "while true; do echo hello!!!; sleep 5; done;"]
+     env: 
+       - name: MYNAME
+          value: THBS
+   - name: con2
+      image: ashwinih2611/thbs:ansible_image
+      command: ["/bin/bash", "-c", "while true; do echo hello!!!; sleep 5; done;"]
+      ports: 
+       containerPort: 80
+   nodeSelector:
+    company: thbs     
+
+  restartPolicy: Never 
+ 
+
+
+ 
+
+
+
+
+
+Sample Manifest file: (with object as ReplicationController)
+
+
+---
+kind: ReplicationController
+apiVersion: v1
+metadata:
+ name: replica
+spec: 
+ replicas: 2
+ selector:
+  company: thbs
+ template:
+  metadata:
+   name: test
+   labels: 
+    company: thbs
+  spec: 
+   containers:
+    - name: con1
+      image: ubuntu
+      command: ["/bin/bash", "-c", "while true; do echo hello-world; sleep 5; done;"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tasmiya Kadur25-11-2021 03:57 pmClient side :
+1. sudo apt install ansible
+2. sudo apt install openssh-server
+3. ip a
+Server side :
+1. sudo apt install ansible
+2. sudo apt install openssh-server
+3. cd /etc/ansible
+4. ls -la
+5. sudo chmod 777 hosts
+6. gedit hosts
+7. cd ~
+8. ls -la
+9. ssh-keygen
+10. cd /home/tasmiya
+11. ssh-copy-id 192.168.0.2
+12. ansible all -m ping
+     

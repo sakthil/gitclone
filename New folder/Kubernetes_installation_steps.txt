@@ -1,0 +1,59 @@
+## kubernetes installation steps ##
+Login as root.
+1  apt-get update
+2  apt-get install docker.io -y || To install Docker
+3  apt-get update
+4  systemctl enable docker.service | To enable docker services
+5  systemctl start docker.service | To start doker services
+Prerequisite for kube environment:
+6  apt-get update && apt-get install -y apt-transport-https -> To install https
+7  curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg|apt-key add -
+8  cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
+  deb http://apt.kubernetes.io/ kubernetes-xenial main
+  EOF
+9  apt-get update
+10  apt-get install -y kubeadm kubectl kubelet
+11.java –version  TO check Java version
+   apt install default-jre
+   apt install default-jre
+   apt install openjdk-11-jre-headless
+
+12.apt-get update
+13.kubeadm init | Only to run if you want to make your server as a master (Only master node)
+
+15.goto cd /etc/docker
+16. ls
+17. create daemon.json file
+18. add below content to daemon.json file
+{
+    "exec-opts": ["native.cgroupdriver=systemd"]
+}
+
+in cd /etc/docker
+19. sudo systemctldaemon-reload
+20. sudo systemctl restart docker
+21. sudo systemctl restart kubelet
+
+22. kubeadm reset
+23.sudo systemctl restart kubelet
+
+24. go to cd /home/ubuntu
+25.kubeadm init
+26.kubectl get nodes
+
+27.kubectl get pods --all-namespaces |s All showing pending status because there is no pod network has been defined.
+
+28.kubectl apply -f https://docs.projectcalico.org/v3.10/manifests/calico.yaml
+29.apt-get update
+30.kubectl get pods --all-namespaces
+
+31.kubectl cluster-info
+
+32.kubectl get nodes
+
+33. go to root (cd )
+root@ip-172-31-9-112:~# kubeadm token create --print-join-command
+kubeadm join 172.31.9.112:6443 --token jnhkbe.3835g4rixwiathz7     --discovery-token-ca-cert-hash sha256:2096c9cd3d82227a4da6139254df6e31dfd997ff0dfa503f6dba805b8e90579d
+Steps to setup Nodes:
+
+

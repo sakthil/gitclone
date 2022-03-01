@@ -1,0 +1,90 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: 'Movie Store API'
+  description: 'This API will provide information regarding the titles catalog in the system '
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /arjunsingh_qwerty/MovieStore/1.0
+schemes:
+ - https
+paths:
+  /movies:
+    get:
+      summary: Get list of movies
+      description: Returns a list containing all the movies
+      responses:
+        200:
+          description: A list of movies
+          schema:
+            type: array
+            items:
+              required:
+                - movieId
+              properties:
+                movieTitle:
+                  type: string
+                leadActor:
+                  type: string
+                movieId:
+                  type: string
+      parameters:
+        - name: segmentSize
+          in: query
+          description: number of movies returned
+          type: integer
+        - name: segmentNumber
+          in: query
+          description: segment number
+          type: integer
+    post:
+      summary: Creates a movie record
+      description: adds a new movie to the list
+      parameters:
+        - name: movie
+          in: body
+          description: the movie to be created
+          schema:
+            required:
+                - movieId
+            properties:
+              movieTitle:
+                type: string
+              leadActor:
+                type: string
+              movieId:
+                type: string
+      responses:
+        200:
+          description: Movies successfully added
+        400:
+          description: Movies couldn't be added
+  /movies/{movieId}:
+    get:
+      summary: Gets a movie
+      description: Returns a single movie for its movieId
+      parameters:
+        - name: movieId
+          in: path  
+          required: true
+          description: movieId of the movie
+          type: string
+      responses:
+        200:
+          description: A movie
+          schema:
+            required:
+              - movieId
+            properties:
+                movieTitle:
+                  type: string
+                leadActor:
+                  type: string
+                movieId:
+                  type: string
+        404:
+          description: The movie does not exist in the database
+  
+                
+    
+    

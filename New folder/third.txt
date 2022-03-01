@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<body>
+        Employee name:<span id="result1"></span><br>
+        Street Address:<span id="result2"></span><br>
+        Price of BMW:<span id="result3"></span><br>
+        Topspeed of Mercedes:<span id="result4"></span>
+        
+        <script>
+var employee = {
+    "name":"Sherlock Holmes",
+    "empNo": "221",
+    "address":{
+               "street":"221B Baker Street",
+               "city":"London",
+               "country":"England",
+               "pin":12211
+    }
+};
+var cars = [{
+		"BMW": {
+			"price": 800000,
+			"topspeed": 250
+		}
+	},
+	{
+		"Mercedes": {
+			"price": 900000,
+			"topspeed": 230
+		}
+	},
+]
+document.getElementById("result1").innerHTML = employee.name;
+document.getElementById("result2").innerHTML = employee.address.street;
+document.getElementById("result3").innerHTML = cars[0].BMW.price;
+document.getElementById("result4").innerHTML = cars[1].Mercedes.topspeed;   
+   
+
+</script>
+	</body>
+</html>
+

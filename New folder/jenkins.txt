@@ -1,0 +1,110 @@
+sudo apt-get update
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt install oracle-java8-installer
+sudo apt install openjdk-8-jre-headless
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+sudo apt-add-repository "deb https://pkg.jenkins.io/debian-stable binary/"
+sudo apt-get update
+sudo apt install jenkins
+systemctl status jenkins
+------------------------------------------------------------
+AWS-----
+
+    1  apt-get update
+    2  yum-get update
+    3  sudo yum-get update
+    4  sudo yum update
+    5  sudo yum update -y
+    6  sudo apt-get update -y
+    7  sudo add-apt-repository ppa:webupd8team/java
+    8  sudo apt install oracle-java8-installer
+    9  java --version
+   10  sudo apt install openjdk-8-jre-headless
+   11  sudo add-apt-repository ppa:webupd8team/java
+   12  sudo apt install oracle-java8-installer
+   13  sudo apt install openjdk-8-jre-headless
+   14  wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+   15  sudo apt-add-repository "deb https://pkg.jenkins.io/debian-stable binary/"
+   16  sudo apt-get update
+   17  sudo apt install jenkins
+   18  systemctl status jenkins(sudo ufw allow 8080
+ sudo ufw allow OpenSSH
+sudo ufw enable 
+sudo ufw status
+)
+
+   19  ip a
+   20  sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+Hostname---hostname jenkins1
+----------------------------------------------------------
+how to change a port in jenkins
+cd etc/default
+cat jenkins
+sudo nano jenkins
+ #HTTP_PORT=8080
+
+systemctl restart jenkins
+-------------------------------------------
+Add pluging-->Manage plugin-->Maven-->javadoc
+create job A 
+  add git repo
+  POLL SCM-->H/5****
+  Build-->Execute shell
+  #!/bin/bash
+  chmod 777 ./file1.sh
+  ./file1.sh
+
+create Job B
+   add git repo link
+   Build after other projects 
+      JOB A
+   Poll SCM -->H/2****
+   Build-->Execute shell
+            echo "Hello There!"
+            echo "Hello,welcome ro Jenkins"
+For pipeline---------
+Add plugins--Manage plugins-->build pipeline
++-->add build pipeline view
+   give pipelinename in view name
+   Upstream/downstream config-->select initial job --->JOB A
+   Console output link Style-->This Window(to see in the console)
+----------------------------------------------------------
+apt-get update
+apt install maven
+mvn -version
+
+Add plugins--Manage plugins-->maven invoker and maven integration plugin
+To see where maven is located-->cd /usr/share/maven
+Go to global tool configuration-->add a maven-->apply and save
+go to dashboard-->item-->maven proj-->add git-->master-->give poll scm-->apply and save-->build-->console output
+---------------------------------------------------------------------------------------------------------------------------
+Nexus(https://kifarunix.com/install-nexus-repository-manager-on-ubuntu/)
+
+ apt update
+     apt install openjdk-8-jdk
+     java -version
+     useradd -M -d /opt/nexus -s /bin/bash -r nexus
+     echo "nexus   ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/nexus
+     wget https://sonatype-download.global.ssl.fastly.net/repository/downloads-prod-group/3/nexus-3.29.2-02-unix.tar.gz
+     mkdir /opt/nexus
+     tar xzf nexus-3.29.2-02-unix.tar.gz -C /opt/nexus --strip-components=1
+     ls /opt/nexus
+     bin  deploy  etc  lib  nexus3  NOTICE.txt  OSS-LICENSE.txt  PRO-LICENSE.txt  public  system
+     chown -R nexus: /opt/nexus
+     vim /opt/nexus/bin/nexus.vmoptions
+     sed -i 's/#run_as_user=""/run_as_user="nexus"/' /opt/nexus/bin/nexus.rc
+     vim /opt/nexus/bin/nexus.vmoptions
+     sudo -u nexus /opt/nexus/bin/nexus start
+     tail -f /opt/nexus/sonatype-work/nexus3/log/nexus.log
+
+      cat /opt/nexus/sonatype-work/nexus3/admin.password
+
+------------------------------------------------------
+Integration of jenkins with nexus
+
+create a job -->add the git link -->branch(master)
+Post steps-->nexus artifact uploader-->Nexus3(version)-->http(protocol-->nexus url-->credentials of nexus-->testid(groupid)-->1.0-SNAPSHOT(version)-->maven-snapshots(Repo)
+Artifacts-->testid(ArtifactId)-->type(war or xml)-->file path(/usr/share/jenkins/jenkins.war)
+apply and save
+Build(if it gives green color)---console output
+Go to nexus-->browse-->maven-snapshots

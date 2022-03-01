@@ -1,0 +1,69 @@
+Single Node Multiple Brokers
+
+C:\kafka>.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+C:\kafka>.\bin\windows\kafka-server-start.bat .\config\server.properties
+C:\kafka>.\bin\windows\kafka-server-start.bat .\config\servertwo.properties
+C:\kafka>.\bin\windows\kafka-server-start.bat .\config\serverthree.properties
+
+
+C:\kafka_2.12-2.8.1>.\bin\windows\kafka-topics.bat --describe --zookeeper localhost:2181
+Topic: __consumer_offsets       TopicId: IczyhCfQSQC0heNhFGZNFg PartitionCount: 50      ReplicationFactor: 1    Configs: compression.type=producer,cleanup.policy=compact,segment.bytes=104857600
+
+
+
+
+C:\kafka_2.12-2.8.1> .\bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 3 --partitions 1 --topic replicationtopic
+
+
+Output - Created topic replicationtopic.
+
+C:\kafka_2.12-2.8.1>.\bin\windows\kafka-topics.bat --list --zookeeper localhost:2181
+__consumer_offsets
+replicationtopic
+testtopic
+
+
+C:\kafka_2.12-2.8.1>.\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 ,localhost:9093,localhost:9094  --topic replicationtopic
+
+
+
+C:\kafka_2.12-2.8.1>.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 ,localhost:9093,localhost:9094 --topic replicationtopic --from-beginning
+
+
+KILL one of the broker -- Leader basicaly
+
+
+C:\kafka_2.12-2.8.1>.\bin\windows\kafka-topics.bat --describe --zookeeper localhost:2181 --topic replicationtopic
+Topic: replicationtopic TopicId: WdkwXoc6TmqjOX4bUBBCow PartitionCount: 1       ReplicationFactor: 3    Configs:
+        Topic: replicationtopic Partition: 0    Leader: 0       Replicas: 0,1,2 Isr: 0,1,2
+		
+		
+
+Get process id -- 
+
+C:\kafka_2.12-2.8.1>wmic process where "caption = 'java.exe' and commandline like '%server.properties%'" get processid
+ProcessId
+27812
+
+
+C:\kafka_2.12-2.8.1>wmic process where "caption = 'java.exe' and commandline like '%servertwo.properties%'" get processid
+ProcessId
+2704
+
+
+We kill this process using the command: 
+taskkill /pid 27812 /f
+
+
+After kill check the describe again 
+
+C:\kafka_2.12-2.8.1>.\bin\windows\kafka-topics.bat --describe --zookeeper localhost:2181 --topic replicationtopic
+Topic: replicationtopic TopicId: WdkwXoc6TmqjOX4bUBBCow PartitionCount: 1       ReplicationFactor: 3    Configs:
+        Topic: replicationtopic Partition: 0    Leader: 0       Replicas: 0,1,2 Isr: 2,0
+		
+
+One broker out of the list and now leader will become another broker and still we can listen messages 
+this ensure fault taulernece
+
+

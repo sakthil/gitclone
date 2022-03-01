@@ -1,0 +1,29 @@
+Note : listeners=PLAINTEXT://localhost:9092
+need to be uncommented
+
+C:\kafka>.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+C:\kafka>.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+
+C:\kafka_2.12-2.8.1>.\bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic testtopic
+Created topic testtopic.
+
+C:\kafka_2.12-2.8.1>.\bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic secondtopic
+Created topic secondtopic.
+
+
+C:\kafka_2.12-2.8.1>.\bin\windows\kafka-topics.bat  --list --zookeeper localhost:2181
+secondtopic
+testtopic
+
+
+
+
+C:\kafka_2.12-2.8.1>.\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic testtopic
+>chintan
+>jain
+
+C:\kafka_2.12-2.8.1>.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic testtopic --from-beginning
+
+

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+	Movie name:<span id="result1"></span><br>
+		Main Lead:<span id="result2"></span>
+
+<script>
+	var movies = [
+	    {
+	        "name":"Pirates of Carrebian and the curse of Black perl",
+	        "actor":"Johnny Depp",
+	        "release_year":"2003"
+	    },
+	    {
+	        "name":"Lagaan",
+	        "actor":"Aamir",
+	        "release_year":"2001"
+	    }
+];
+
+document.getElementById("result1").innerHTML = movies[0].name;
+document.getElementById("result2").innerHTML = movies[0].actor;
+</script>
+
+</body>
+</html>
